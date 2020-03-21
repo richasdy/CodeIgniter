@@ -1,0 +1,70 @@
+#pencarian {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 500px;
+  }
+  
+  #pencarian .pencarian__users {
+    background-color: white;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .pencarian__users .pencarian__user {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e6e6e6;
+  }
+  
+  .pencarian__users .pencarian__user:last-child {
+    border: 0;
+  }
+  
+  .pencarian__user .pencarian__avatar {
+    width: 55px;
+    border-radius: 50%;
+  }
+  
+  .pencarian__user .pencarian__user-column {
+    display: flex;
+    align-items: center;
+  }
+  
+  .pencarian__user .pencarian__info {
+    margin-left: 15px;
+  }
+  
+  .pencarian__info .pencarian__username {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  .pencarian__info .pencarian__full-name {
+    color: #999;
+  }
+  
+  .pencarian__user-column button {
+    background-color: var(--fd-blue);
+    color: white;
+    border: 0;
+    font-weight: 600;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .pencarian__user-column button:active,
+  .pencarian__user-column button:focus {
+    outline: none;
+  }
+  
+  .pencarian__user-column:active {
+    opacity: 0.9;
+  }
