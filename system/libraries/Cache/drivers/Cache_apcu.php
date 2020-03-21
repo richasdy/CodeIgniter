@@ -32,30 +32,26 @@
  * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
  * @license	https://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
- * @since	Version 3.0.0
+ * @since	Version 3.2.0
  * @filesource
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * CodeIgniter Wincache Caching Class
- *
- * Read more about Wincache functions here:
- * https://secure.php.net/manual/en/ref.wincache.php
+ * CodeIgniter APCu Caching Class
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Core
- * @author		Mike Murkovic
- * @link
+ * @author		CodeIgniter Dev team
  */
-class CI_Cache_wincache extends CI_Driver {
+class CI_Cache_apcu extends CI_Driver {
 
 	/**
 	 * Class constructor
 	 *
 	 * Only present so that an error message is logged
-	 * if APC is not available.
+	 * if APCu is not available.
 	 *
 	 * @return	void
 	 */
@@ -63,7 +59,7 @@ class CI_Cache_wincache extends CI_Driver {
 	{
 		if ( ! $this->is_supported())
 		{
-			log_message('error', 'Cache: Failed to initialize Wincache; extension not loaded/enabled?');
+			log_message('error', 'Cache: Failed to initialize APCu; extension not loaded/enabled?');
 		}
 	}
 
@@ -72,19 +68,25 @@ class CI_Cache_wincache extends CI_Driver {
 	/**
 	 * Get
 	 *
-	 * Look for a value in the cache. If it exists, return the data,
+	 * Look for a value in the cache. If it exists, return the data
 	 * if not, return FALSE
 	 *
-	 * @param	string	$id	Cache Ide
-	 * @return	mixed	Value that is stored/FALSE on failure
+	 * @param	string
+	 * @return	mixed	value that is stored/FALSE on failure
 	 */
 	public function get($id)
 	{
 		$success = FALSE;
-		$data = wincache_ucache_get($id, $success);
+		$data = apcu_fetch($id, $success);
 
-		// Success returned by reference from wincache_ucache_get()
-		return ($success) ? $data : FALSE;
+		if ($success === TRUE)
+		{
+			return is_array($data)
+				? $data[0]
+				: $data;
+		}
+
+		return FALSE;
 	}
 
 	// ------------------------------------------------------------------------
@@ -94,13 +96,19 @@ class CI_Cache_wincache extends CI_Driver {
 	 *
 	 * @param	string	$id	Cache ID
 	 * @param	mixed	$data	Data to store
-	 * @param	int	$ttl	Time to live (in seconds)
-	 * @param	bool	$raw	Whether to store the raw value (unused)
-	 * @return	bool	true on success/false on failure
+	 * @param	int	$ttl	Length of time (in seconds) to cache the data
+	 * @param	bool	$raw	Whether to store the raw value
+	 * @return	bool	TRUE on success, FALSE on failure
 	 */
 	public function save($id, $data, $ttl = 60, $raw = FALSE)
 	{
-		return wincache_ucache_set($id, $data, $ttl);
+		$ttl = (int) $ttl;
+
+		return apcu_store(
+			$id,
+			($raw === TRUE ? $data : array($data, time(), $ttl)),
+			$ttl
+		);
 	}
 
 	// ------------------------------------------------------------------------
@@ -113,7 +121,7 @@ class CI_Cache_wincache extends CI_Driver {
 	 */
 	public function delete($id)
 	{
-		return wincache_ucache_delete($id);
+		return apcu_delete($id);
 	}
 
 	// ------------------------------------------------------------------------
@@ -127,10 +135,7 @@ class CI_Cache_wincache extends CI_Driver {
 	 */
 	public function increment($id, $offset = 1)
 	{
-		$success = FALSE;
-		$value = wincache_ucache_inc($id, $offset, $success);
-
-		return ($success === TRUE) ? $value : FALSE;
+		return apcu_inc($id, $offset);
 	}
 
 	// ------------------------------------------------------------------------
@@ -144,10 +149,7 @@ class CI_Cache_wincache extends CI_Driver {
 	 */
 	public function decrement($id, $offset = 1)
 	{
-		$success = FALSE;
-		$value = wincache_ucache_dec($id, $offset, $success);
-
-		return ($success === TRUE) ? $value : FALSE;
+		return apcu_dec($id, $offset);
 	}
 
 	// ------------------------------------------------------------------------
@@ -159,7 +161,7 @@ class CI_Cache_wincache extends CI_Driver {
 	 */
 	public function clean()
 	{
-		return wincache_ucache_clear();
+		return apcu_clear_cache();
 	}
 
 	// ------------------------------------------------------------------------
@@ -171,7 +173,7 @@ class CI_Cache_wincache extends CI_Driver {
 	 */
 	public function cache_info()
 	{
-		return wincache_ucache_info(TRUE);
+		return apcu_cache_info();
 	}
 
 	// ------------------------------------------------------------------------
@@ -184,21 +186,21 @@ class CI_Cache_wincache extends CI_Driver {
 	 */
 	public function get_metadata($id)
 	{
-		if ($stored = wincache_ucache_info(FALSE, $id))
-		{
-			$age = $stored['ucache_entries'][1]['age_seconds'];
-			$ttl = $stored['ucache_entries'][1]['ttl_seconds'];
-			$hitcount = $stored['ucache_entries'][1]['hitcount'];
+		$success = FALSE;
+		$stored = apcu_fetch($id, $success);
 
-			return array(
-				'expire'	=> $ttl - $age,
-				'hitcount'	=> $hitcount,
-				'age'		=> $age,
-				'ttl'		=> $ttl
-			);
+		if ($success === FALSE OR count($stored) !== 3)
+		{
+			return FALSE;
 		}
 
-		return FALSE;
+		list($data, $time, $ttl) = $stored;
+
+		return array(
+			'expire'  => $time + $ttl,
+			'mtime'   => $time,
+			'data'    => $data
+		);
 	}
 
 	// ------------------------------------------------------------------------
@@ -206,12 +208,12 @@ class CI_Cache_wincache extends CI_Driver {
 	/**
 	 * is_supported()
 	 *
-	 * Check to see if WinCache is available on this system, bail if it isn't.
+	 * Check to see if APCu is available on this system, bail if it isn't.
 	 *
 	 * @return	bool
 	 */
 	public function is_supported()
 	{
-		return (extension_loaded('wincache') && ini_get('wincache.ucenabled'));
+		return (extension_loaded('apcu') && ini_get('apc.enabled'));
 	}
 }
