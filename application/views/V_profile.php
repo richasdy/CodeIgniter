@@ -55,7 +55,7 @@ Kelas: IF-42-11 -->
             </div>
             <div class="profile__column">
                 <div class="profile__title">
-                    <h3 class="profile__username"><?= $this->session->userdata('name'); ?></h3>
+                    <h3 class="profile__username"><?= $this->session->userdata('username'); ?></h3>
                     <a href="edit-profile.php">Edit profile</a>
                     <a href="upload-photo.html">Upload photo</a>
                     <i class="fa fa-cog fa-lg"></i>
@@ -74,11 +74,11 @@ Kelas: IF-42-11 -->
                 <!-- Profile -->
                 <p class="profile__bio">
                     <span class="profile__full-name">
-                        <?php echo $_SESSION['profile']['name']; ?>
+                        <?= $this->session->userdata('name'); ?>
                         <br>
                     </span>
-                    <?php echo $_SESSION['profile']['bio']; ?>
-                    <a href="https://github.com/muhazizal"><?php echo $_SESSION['profile']['website']; ?></a>
+                    <?= $this->session->userdata('bio'); ?>
+                    <a href="https://github.com/muhazizal"><?= $this->session->userdata('website'); ?></a>
                 </p>
             </div>
         </header>

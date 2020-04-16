@@ -24,7 +24,7 @@ Kelas: IF-42-11 -->
             <div class="login__column">
                 <div class="login__box">
                     <img src="<?= base_url('assets/images/loginLogo.png'); ?>" class="login__logo" />
-                    <form action="<?= base_url('Login/login') ?>" method="post" class="login__form">
+                    <form action="<?= site_url('Auth'); ?>" method="post" class="login__form">
                         <input type="text" name="username" placeholder="Username" required />
                         <input type="password" name="password" placeholder="Password" required />
                         <input type="submit" value="Log in" />
