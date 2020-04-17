@@ -56,8 +56,9 @@ Kelas: IF-42-11 -->
             <div class="profile__column">
                 <div class="profile__title">
                     <h3 class="profile__username"><?= $this->session->userdata('username'); ?></h3>
-                    <a href="edit-profile.php">Edit profile</a>
-                    <a href="upload-photo.html">Upload photo</a>
+                    <a href="<?= site_url('User/load_editProfile'); ?>">Edit profile</a>
+                    <a href="<?= site_url('User/load_uploadPhoto'); ?>">Upload photo</a>
+                    <a href="<?= site_url('Auth/do_logout') ?>">Logout</a>
                     <i class="fa fa-cog fa-lg"></i>
                 </div>
                 <ul class="profile__stats">
@@ -85,8 +86,8 @@ Kelas: IF-42-11 -->
         <section class="profile__photos">
             <!-- Feed Photo -->
             <?php
-            $query_image = mysqli_query($conn, "SELECT * FROM photo");
-            for ($i = 0; $i < mysqli_num_rows($query_image); $i++) {
+            $query_image = $this->session->userdata;
+            for ($i = 0; $i < mysqli_num_rows($query_image) ; $i++) {
                 $images = mysqli_fetch_assoc($query_image);
             ?>
                 <div class="profile__photo">

@@ -35,7 +35,7 @@ Kelas: IF-42-11 -->
       <div class="col-4 offset-md-4 form-div">
         <h2>Upload your photo.</h2>
         <br>
-        <form action="upload.php" method="post" enctype="multipart/form-data">
+        <form action="<?= site_url('User/do_uploadPhoto'); ?>" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="image">Profile Image</label>
             <input type="file" name="image" id="image" class="form-control" required>

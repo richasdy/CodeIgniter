@@ -14,14 +14,14 @@ Kelas: IF-42-11 -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Profile | Vietgram</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/styles.css'); ?>">
 </head>
 
 <body>
     <nav class="navigation">
         <div class="navigation__column">
             <a href="feed.php">
-                <img src="images/logo.png" />
+                <img src="<?= base_url('assets/images/logo.png'); ?>" />
             </a>
         </div>
         <div class="navigation__column">
@@ -52,35 +52,35 @@ Kelas: IF-42-11 -->
         <div class="edit-profile__container">
             <header class="edit-profile__header">
                 <div class="edit-profile__avatar-container">
-                    <img src="images/avatar.jpg" class="edit-profile__avatar" />
+                    <img src="<?= base_url('assets/images/avatar.jpg'); ?>" class="edit-profile__avatar" />
                 </div>
-                <h4 class="edit-profile__username">Edit your profile, <?php echo $_SESSION['user']['username']; ?>.</h4>
+                <h4 class="edit-profile__username">Edit your profile, <?= $this->session->userdata('username') ?>.</h4>
             </header>
             <!-- Update Profile -->
-            <form action="update.php" method="post" class="edit-profile__form">
+            <form action="<?= site_url('User/do_editProfile') ?>" method="post" class="edit-profile__form">
                 <div class="form__row">
                     <label for="full-name" class="form__label">Name:</label>
-                    <input name="name" id="full-name" type="text" class="form__input" value="<?php echo $_SESSION['profile']['name']; ?>"/>
+                    <input name="name" id="full-name" type="text" class="form__input" value="<?= $this->session->userdata('name') ?>"/>
                 </div>
                 <div class="form__row">
                     <label for="user-name" class="form__label">Username:</label>
-                    <input name="username" id="user-name" type="text" class="form__input" value="<?php echo $_SESSION['profile']['username']; ?>"/>
+                    <input name="username" id="user-name" type="text" class="form__input" value="<?= $this->session->userdata('username') ?>"/>
                 </div>
                 <div class="form__row">
                     <label for="website" class="form__label">Website:</label>
-                    <input name="website" id="website" type="url" class="form__input" value="<?php echo $_SESSION['profile']['website']; ?>"/>
+                    <input name="website" id="website" type="url" class="form__input" value="<?= $this->session->userdata('website') ?>"/>
                 </div>
                 <div class="form__row">
                     <label for="bio" class="form__label">Bio:</label>
-                    <textarea name="bio" id="bio"><?php echo $_SESSION['profile']['bio']; ?></textarea>
+                    <textarea name="bio" id="bio"><?= $this->session->userdata('bio') ?></textarea>
                 </div>
                 <div class="form__row">
                     <label for="email" class="form__label">Email:</label>
-                    <input name="email" id="email" type="email" class="form__input" value="<?php echo $_SESSION['profile']['email']; ?>"/>
+                    <input name="email" id="email" type="email" class="form__input" value="<?= $this->session->userdata('email') ?>"/>
                 </div>
                 <div class="form__row">
                     <label for="phone" class="form__label">Phone Number:</label>
-                    <input name="phonenumber" id="phone" type="tel" class="form__input" value="<?php echo $_SESSION['profile']['phonenumber']; ?>"/>
+                    <input name="phonenumber" id="phone" type="tel" class="form__input" value="<?= $this->session->userdata('phonenumber') ?>"/>
                 </div>
                 <div class="form__row">
                     <label for="gender" class="form__label">Gender:</label>

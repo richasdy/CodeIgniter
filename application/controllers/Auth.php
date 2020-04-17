@@ -21,25 +21,28 @@ class Auth extends CI_Controller {
 	}
 
 	private function _do_login() {
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
 		$where = [
-			'username' => $username,
-			'password' => $password
+			'username' => $this->input->post('username'),
+			'password' => $this->input->post('password')
 		];
 
 		$user = $this->M_User->checkUser($where);
 		
 		// if user avail
 		if ($user) {
-			$profile = $this->M_User->getProfile();
-			
-			$this->session->set_userdata($profile);
+			$data = $this->M_User->getProfile();
+
+			$this->session->set_userdata($data);
 			redirect('User');
+		} else {
+			redirect('Auth');
 		}
 	}
 
-
+	public function do_logout() {
+		$this->session->unset_userdata('username');
+		redirect('Auth');
+	}
 	
 }
 
