@@ -18,6 +18,13 @@ class AllModel extends CI_Model
         $returnArray['result'] = $query->result();
         return $returnArray;
     }
+    public function getProfile()
+    {
+        $query = $this->db->get('profile');
+        $returnArray['num_rows'] = $query->num_rows();
+        $returnArray['result'] = $query->result();
+        return $returnArray;
+    }
      public function getWhere($where, $table)
     {
         return $this->db->get_where($table, $where);
@@ -31,5 +38,10 @@ class AllModel extends CI_Model
 		    }else{
 			    return false;
 		    }
+    }
+    public function update($where, $table, $data)
+    {
+        $this->db->where($where);
+        return $this->db->update($table, $data);
     }
 }
