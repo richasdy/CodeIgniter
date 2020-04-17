@@ -20,7 +20,7 @@ Kelas: IF-42-11 -->
 <body>
     <nav class="navigation">
         <div class="navigation__column">
-            <a href="feed.php">
+            <a href="<?= site_url('User/load_feed') ?>">
                 <img src="<?= base_url('assets/images/logo.png'); ?>" />
             </a>
         </div>
@@ -31,7 +31,7 @@ Kelas: IF-42-11 -->
         <div class="navigation__column">
             <ul class="navigations__links">
                 <li class="navigation__list-item">
-                    <a href="explore.php" class="navigation__link">
+                    <a href="<?= site_url('User/load_explore') ?>" class="navigation__link">
                         <i class="fa fa-compass fa-lg"></i>
                     </a>
                 </li>
@@ -41,7 +41,7 @@ Kelas: IF-42-11 -->
                     </a>
                 </li>
                 <li class="navigation__list-item">
-                    <a href="profile.php" class="navigation__link">
+                    <a href="<?= site_url('User') ?>" class="navigation__link">
                         <i class="fa fa-user-o fa-lg"></i>
                     </a>
                 </li>
@@ -86,16 +86,14 @@ Kelas: IF-42-11 -->
         <section class="profile__photos">
             <!-- Feed Photo -->
             <?php
-            $query_image = $this->session->userdata;
-            for ($i = 0; $i < mysqli_num_rows($query_image) ; $i++) {
-                $images = mysqli_fetch_assoc($query_image);
-            ?>
+            $query_image = $this->db->get('photo')->result_array();
+            foreach ($query_image as $row) { ?>
                 <div class="profile__photo">
-                    <img src="<?= $images["url"] ?>" />
+                    <img src="<?= base_url('assets/').$row["url"] ?>" />
                     <div class="profile__photo-overlay">
                         <span class="overlay__item">
                             <i class="fa fa-heart"></i>
-                            <?= $images["like"] ?>
+                            <?= $row["like"] ?>
                         </span>
                         <span class="overlay__item">
                             <i class="fa fa-comment"></i>

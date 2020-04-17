@@ -18,6 +18,14 @@ class User extends CI_Controller {
     $this->load->view('V_profile');
   }
 
+  public function load_explore() {
+    $this->load->view('V_explore');
+  }
+
+  public function load_feed() {
+    $this->load->view('V_feed');
+  }
+
   public function load_editProfile() {
     $this->load->view('V_edit-profile');
   }
@@ -27,6 +35,14 @@ class User extends CI_Controller {
   }
 
   public function do_editProfile() {
+    $this->form_validation->set_rules('name',        'Name',        'required');
+    $this->form_validation->set_rules('username',    'Username',    'required|trim');
+    $this->form_validation->set_rules('website',     'Website',     'required|trim');
+    $this->form_validation->set_rules('bio',         'Bio',         'required');
+    $this->form_validation->set_rules('email',       'Email',       'required|trim');
+    $this->form_validation->set_rules('phonenumber', 'Phonenumber', 'required|trim');
+    $this->form_validation->set_rules('gender',      'Username',    'required');
+
     $username = $this->session->userdata('username');
     
     $dataProfile = [
@@ -40,8 +56,8 @@ class User extends CI_Controller {
     ];
 
     $dataUser = [
-      'username' => $this->input->post('username'),
-      'email' => $this->input->post('email')
+      'username'  => $this->input->post('username'),
+      'email'     => $this->input->post('email')
     ];
 
     $this->M_User->editProfile($dataProfile, $username);
@@ -49,9 +65,25 @@ class User extends CI_Controller {
     $this->session->set_userdata($dataProfile);
     redirect('User');
   }
-
-  public function do_uploadPhoto() {
+  
+  public function saveImage() {
+    $post = $this->input->post();
     
+  }
+
+  private function _do_uploadPhoto() {
+    $config = [
+      'upload_path' => './assets/images/',
+      'allowed_types' => 'gif|jpg|png',
+      'max_size' => '1024',
+      'overwrite' => 'true',
+    ];
+
+    $this->load->library('upload', $config);
+
+    if ($this->upload->do_upload('image')) {
+
+    }
   }
   
 }

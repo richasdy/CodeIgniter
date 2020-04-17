@@ -35,17 +35,17 @@ Kelas: IF-42-11 -->
       <div class="col-4 offset-md-4 form-div">
         <h2>Upload your photo.</h2>
         <br>
-        <form action="<?= site_url('User/do_uploadPhoto'); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= site_url('User/_do_uploadPhoto'); ?>" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="image">Profile Image</label>
-            <input type="file" name="image" id="image" class="form-control" required>
+            <input type="file" name="imageURL" id="image" class="form-control" required>
           </div>
           <div class="form-group">
             <label for="caption">Caption</label>
             <textarea type="textarea" name="caption" class="form-control"></textarea>
           </div>
           <div class="form-group">
-            <button type="submit" name="submit" class="btn btn-primary btn-block">Upload</button>
+            <button type="submit" name="upload_file" class="btn btn-primary btn-block">Upload</button>
           </div>
         </form>
       </div>

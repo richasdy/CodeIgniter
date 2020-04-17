@@ -14,14 +14,14 @@ Kelas: IF-42-11 -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Explore | Vietgram</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/styles.css') ?>">
 </head>
 
 <body>
     <nav class="navigation">
         <div class="navigation__column">
-            <a href="feed.php">
-                <img src="images/logo.png" />
+            <a href="<?= site_url('User/load_feed'); ?>">
+                <img src="<?= base_url('assets/images/logo.png'); ?>" />
             </a>
         </div>
         <div class="navigation__column">
@@ -31,7 +31,7 @@ Kelas: IF-42-11 -->
         <div class="navigation__column">
             <ul class="navigations__links">
                 <li class="navigation__list-item">
-                    <a href="explore.php" class="navigation__link">
+                    <a href="<?= site_url('User/load_explore') ?>" class="navigation__link">
                         <i class="fa fa-compass fa-lg"></i>
                     </a>
                 </li>
@@ -41,7 +41,7 @@ Kelas: IF-42-11 -->
                     </a>
                 </li>
                 <li class="navigation__list-item">
-                    <a href="profile.php" class="navigation__link">
+                    <a href="<?= site_url('User') ?>" class="navigation__link">
                         <i class="fa fa-user-o fa-lg"></i>
                     </a>
                 </li>
@@ -53,10 +53,10 @@ Kelas: IF-42-11 -->
             <li class="explore__user">
 
                 <div class="explore__user-column">
-                    <img src="images/avatar.jpg" class="explore__avatar" />
+                    <img src="<?= base_url('assets/images/avatar.jpg') ?>" class="explore__avatar" />
                     <div class="explore__info">
-                        <span class="explore__username"><?= $_SESSION['user']['username'] ?></span>
-                        <span class="explore__full-name"><?= $_SESSION['profile']['name'] ?></span>
+                        <span class="explore__username"><?= $this->session->userdata('username'); ?></span>
+                        <span class="explore__full-name"><?= $this->session->userdata('name') ?></span>
                     </div>
                 </div>
                 <div class="explore__user-column">
@@ -66,10 +66,10 @@ Kelas: IF-42-11 -->
             <li class="explore__user">
 
                 <div class="explore__user-column">
-                    <img src="images/avatar.jpg" class="explore__avatar" />
+                    <img src="<?= base_url('assets/images/avatar.jpg') ?>" class="explore__avatar" />
                     <div class="explore__info">
-                        <span class="explore__username"><?= $_SESSION['user']['username'] ?></span>
-                        <span class="explore__full-name"><?= $_SESSION['profile']['name'] ?></span>
+                        <span class="explore__username"><?= $this->session->userdata('username') ?></span>
+                        <span class="explore__full-name"><?= $this->session->userdata('name') ?></span>
                     </div>
                 </div>
                 <div class="explore__user-column">
@@ -79,10 +79,10 @@ Kelas: IF-42-11 -->
             <li class="explore__user">
 
                 <div class="explore__user-column">
-                    <img src="images/avatar.jpg" class="explore__avatar" />
+                    <img src="<?= base_url('assets/images/avatar.jpg') ?>" class="explore__avatar" />
                     <div class="explore__info">
-                        <span class="explore__username"><?= $_SESSION['user']['username'] ?></span>
-                        <span class="explore__full-name"><?= $_SESSION['profile']['name'] ?></span>
+                        <span class="explore__username"><?= $this->session->userdata('username') ?></span>
+                        <span class="explore__full-name"><?= $this->session->userdata('name') ?></span>
                     </div>
                 </div>
                 <div class="explore__user-column">

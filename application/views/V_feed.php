@@ -14,20 +14,19 @@ Kelas: IF-42-11 -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Feed | Vietgram</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/styles.css') ?>">
 </head>
 
 <body>
     <nav class="navigation">
         <div class="navigation__column">
-            <a href="feed.php">
-                <!-- Master branch comment -->
-                <img src="images/logo.png" />
+            <a href="<?= site_url('User/load_feed') ?>">
+                <img src="<?= base_url('assets/images/logo.png') ?>" />
             </a>
         </div>
         <div class="navigation__column">
             <!-- Search Caption -->
-            <form action="feed.php" method="get">
+            <form action="<?= site_url('User/load_feed') ?>" method="get">
                 <i class="fa fa-search"></i>
                 <?php
                 if (array_key_exists("caption", $_GET)) {
@@ -45,7 +44,7 @@ Kelas: IF-42-11 -->
         <div class="navigation__column">
             <ul class="navigations__links">
                 <li class="navigation__list-item">
-                    <a href="explore.php" class="navigation__link">
+                    <a href="<?= site_url('User/load_explore') ?>" class="navigation__link">
                         <i class="fa fa-compass fa-lg"></i>
                     </a>
                 </li>
@@ -55,7 +54,7 @@ Kelas: IF-42-11 -->
                     </a>
                 </li>
                 <li class="navigation__list-item">
-                    <a href="profile.php" class="navigation__link">
+                    <a href="<?= site_url('User') ?>" class="navigation__link">
                         <i class="fa fa-user-o fa-lg"></i>
                     </a>
                 </li>
@@ -66,24 +65,26 @@ Kelas: IF-42-11 -->
         <!-- Search caption -->
         <?php
         if (array_key_exists("caption", $_GET)) {
-            $query_image = mysqli_query($conn, 'SELECT * FROM photo WHERE caption LIKE "%' . $_GET["caption"] . '%" ');
+            $this->db->select('*');
+            $this->db->from('photo');
+            $this->db->like('caption', $_GET['caption']);
+            $query_image = $this->db->get()->result_array();
         } else {
-            $query_image = mysqli_query($conn, 'SELECT * FROM photo');
+            $query_image = $this->db->get('photo')->result_array();
         }
 
         // Show image
-        for ($i = 0; $i < mysqli_num_rows($query_image); $i++) {
-            $images = mysqli_fetch_assoc($query_image);
+        foreach ($query_image as $row) { 
         ?>
             <div class="photo">
                 <header class="photo__header">
-                    <img src="images/avatar.jpg" class="photo__avatar" />
+                    <img src="<?= base_url('assets/images/avatar.jpg') ?>" class="photo__avatar" />
                     <div class="photo__user-info">
-                        <span class="photo__author"><?= $_SESSION['user']['username'] ?></span>
+                        <span class="photo__author"><?= $this->session->userdata('username'); ?></span>
                         <span class="photo__location">Bandung</span>
                     </div>
                 </header>
-                <img src="<?= $images["url"] ?>" />
+                <img src="<?= base_url('assets/').$row['url'] ?>" />
                 <div class="photo__info">
                     <div class="photo__actions">
                         <span class="photo__action">
@@ -93,10 +94,10 @@ Kelas: IF-42-11 -->
                             <i class="fa fa-comment-o fa-lg"></i>
                         </span>
                     </div>
-                    <span class="photo__likes"><?= $images["like"] ?></span>
+                    <span class="photo__likes"><?= $row["like"] ?></span>
                     <ul class="photo__comments">
                         <li class="photo__comment">
-                            <span class="photo__comment-author">serranoarevalo</span> <?= $images["caption"] ?>
+                            <span class="photo__comment-author">serranoarevalo</span> <?= $row["caption"] ?>
                         </li>
                     </ul>
                     <span class="photo__time-ago">2 hours ago</span>
@@ -109,15 +110,16 @@ Kelas: IF-42-11 -->
         <?php
         }
         ?>
+
         <div class="photo">
             <header class="photo__header">
-                <img src="images/avatar.jpg" class="photo__avatar" />
+                <img src="<?= base_url('assets/images/avatar.jpg') ?>" class="photo__avatar" />
                 <div class="photo__user-info">
-                    <span class="photo__author"><?= $_SESSION['user']['username'] ?></span>
+                    <span class="photo__author"><?= $this->session->userdata('username'); ?></span>
                     <span class="photo__location">Bandung</span>
                 </div>
             </header>
-            <img src="images/feedPhoto.jpg" />
+            <img src="<?= base_url('assets/images/feedPhoto.jpg') ?>" />
             <div class="photo__info">
                 <div class="photo__actions">
                     <span class="photo__action">
@@ -151,13 +153,13 @@ Kelas: IF-42-11 -->
         </div>
         <div class="photo">
             <header class="photo__header">
-                <img src="images/avatar.jpg" class="photo__avatar" />
+                <img src="<?= base_url('assets/images/avatar.jpg') ?>" class="photo__avatar" />
                 <div class="photo__user-info">
-                    <span class="photo__author"><?= $_SESSION['user']['username'] ?></span>
+                    <span class="photo__author"><?= $this->session->userdata('username'); ?></span>
                     <span class="photo__location">Bandung</span>
                 </div>
             </header>
-            <img src="images/feedPhoto.jpg" />
+            <img src="<?= base_url('assets/images/feedPhoto.jpg') ?>" />
             <div class="photo__info">
                 <div class="photo__actions">
                     <span class="photo__action">
