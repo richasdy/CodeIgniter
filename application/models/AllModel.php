@@ -25,6 +25,12 @@ class AllModel extends CI_Model
         $returnArray['result'] = $query->result();
         return $returnArray;
     }
+    public function getExplore(){
+        $this->db->select('profile.name, profile.username, photo.url');
+        $this->db->from('profile');
+        $this->db->join('photo', 'profile.username = photo.username');
+        return $this->db->get();
+    }
      public function getWhere($where, $table)
     {
         return $this->db->get_where($table, $where);
