@@ -19,41 +19,41 @@
 <body>
     <nav class="navigation">
         <div class="navigation__column">
-            <a href="#">
+            <a href="<?= site_url('feed/index') ?>">
                 <!-- Master branch comment -->
                 <img src="<?= base_url() . 'assets/images/logo.png' ?>" />
             </a>
         </div>
         <div class="navigation__column">
             <i class="fa fa-search"></i>
-            <form method="post" action="#">
+            <form method="post" action="<?= site_url('feed/search/') ?>">
                 <input type="text" name="keyword" class="form-control" placeholder="Search">
             </form>
         </div>
         <div class="navigation__column">
             <ul class="navigations__links">
                 <li class="navigation__list-item">
-                    <a href="#" class="navigation__link">
+                    <a href="<?= site_url('feed/index') ?>" class="navigation__link">
                         <i class="fa fa-home fa-lg" aria-hidden="true"></i>
                     </a>
                 </li>
                 <li class="navigation__list-item">
-                    <a href="#" class="navigation__link">
+                    <a href="<?= site_url('upload/index') ?>" class="navigation__link">
                         <i class="fa fa-camera fa-lg" aria-hidden="true"></i>
                     </a>
                 </li>
                 <li class="navigation__list-item">
-                    <a href="#" class="navigation__link">
+                    <a href="<?= site_url('explore/index') ?>" class="navigation__link">
                         <i class="fa fa-compass fa-lg"></i>
                     </a>
                 </li>
                 <li class="navigation__list-item">
-                    <a href="#" class="navigation__link">
+                    <a href="<?= site_url('profile/index') ?>" class="navigation__link">
                         <i class="fa fa-user-circle fa-lg"></i>
                     </a>
                 </li>
                 <li class="navigation__list-item">
-                    <a href="#" class="navigation__link">
+                    <a href="<?= site_url('logout/index') ?>" class="navigation__link">
                         <i class="fa fa-sign-out fa-lg"></i>
                     </a>
                 </li>
