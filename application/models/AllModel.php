@@ -50,4 +50,11 @@ class AllModel extends CI_Model
         $this->db->where($where);
         return $this->db->update($table, $data);
     }
+    public function insert_new_photo($data){
+		  if($this->db->insert('photo', $data)){
+			  return true;
+		  }else{
+			  return false;
+		  }
+	}
 }
