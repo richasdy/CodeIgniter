@@ -44,11 +44,12 @@
     <main id="profile">
         <header class="profile__header">
             <div class="profile__column">
-                <img src="images/avatar.jpg" />
+                <img src="<?php echo base_url('assets/images/avatar.jpg')?>" />
             </div>
             <div class="profile__column">
                 <div class="profile__title">
                     <h3 class="profile__username"><?php echo $this->session->userdata('username'); ?></h3>
+                    <a href="<?php echo site_url('user/addPhoto')?>">Add Photo</a>
                     <a href="<?php echo site_url('user/editProfile')?>">Edit profile</a>
                     <i class="fa fa-cog fa-lg"></i>
                 </div>
@@ -65,11 +66,9 @@
                 </ul>
                 <p class="profile__bio">
                     <span class="profile__full-name">
-                        Nicolás Serrano Arévalo
-                    </span> Doing whatever and eating Pho Lorem ipsum dolor sit amet consectetur, adipisicing
-                    elit. Ducimus suscipit praesentium eveniet quibusdam ipsam omnis fugit. Tempore voluptates ratione recusandae
-                    natus illo perspiciatis suscipit, odio consequuntur quasi obcaecati minus! Omnis.
-                    <a href="#">serranoarevalo.com</a>
+                        <?php echo $user->name; ?>
+                    </span> <?php echo $user->bio; ?>
+                    <a href="#"><?php echo $user->website; ?></a>
                 </p>
             </div>
         </header>

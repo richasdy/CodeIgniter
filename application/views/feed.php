@@ -13,7 +13,7 @@
 <body>
     <nav class="navigation">
         <div class="navigation__column">
-            <a href="feed.html">
+            <a href="<?php echo base_url('user'); ?>">
                 <!-- Master branch comment -->
                 <img src="<?php echo base_url('assets/images/logo.png')?>" />
             </a>

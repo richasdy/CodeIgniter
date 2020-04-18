@@ -21,7 +21,8 @@ class Login extends CI_Controller {
 			$q = $this->userM->login($data);
 			if ($q == 1) {
 				$array = array(
-					'username' => $data['username'],
+					'id' = 1,
+					'username' => $data['username']
 				);
 				$this->session->set_userdata($array);
 				redirect('User');

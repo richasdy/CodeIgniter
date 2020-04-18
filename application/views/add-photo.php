@@ -5,15 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Profile | Vietgram</title>
+    <title>add photo | Vietgram</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/styles.css') ?>">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 </head>
+<style>
+#image-preview{
+    display:none;
+    width : 250px;
+    height : 300px;
+}
+</style>
 
 <body>
     <nav class="navigation">
         <div class="navigation__column">
-            <a href="<?php echo base_url('user'); ?>">
+            <a href="feed.html">
                 <img src="<?php echo base_url('assets/images/logo.png')?>" />
             </a>
         </div>
@@ -34,7 +42,7 @@
                     </a>
                 </li>
                 <li class="navigation__list-item">
-                    <a href="<?php echo base_url('User/profile') ?>" class="navigation__link">
+                    <a href="profile.html" class="navigation__link">
                         <i class="fa fa-user-o fa-lg"></i>
                     </a>
                 </li>
@@ -47,43 +55,23 @@
                 <div class="edit-profile__avatar-container">
                     <img src="<?php echo base_url('assets/images/avatar.jpg')?>" class="edit-profile__avatar" />
                 </div>
-                <h4 class="edit-profile__username"><?php echo $this->session->userdata('username'); ?></h4>
+                <h4 class="edit-profile__username">serranoarevalo</h4>
             </header>
-            <form action="<?php echo base_url('user/editProfileAction'); ?>" method="post" class="edit-profile__form">
+            <form action="<?php echo base_url('user/addPhotoAction')?>" method="post" class="edit-profile__form" enctype="multipart/form-data">
+                <input type="hidden" id="id" value="1">
                 <div class="form__row">
-                    <label for="full-name" class="form__label">Name:</label>
-                    <input id="full-name" name="full-name" value="<?php echo $user->name; ?>" type="text" class="form__input" />
+                    <label for="caption" class="form__label">Caption:</label>
+                    <textarea name="caption" id="caption"></textarea>
                 </div>
                 <div class="form__row">
-                    <label for="user-name" class="form__label">Username:</label>
-                    <input id="user-name" value="<?php echo $this->session->userdata('username'); ?>" type="text" class="form__input" disabled/>
+                    <label for="photo" class="form__label">Photo:</label>
+                    <input type="file" id="image-source" name="file" onchange="previewImage();"/>
                 </div>
                 <div class="form__row">
-                    <label for="website" class="form__label">Website:</label>
-                    <input id="website" name="website" value="<?php echo $user->website; ?>" class="form__input" />
+                    <label for="preview" id="preview" class="form__label"></label>
+                    <img id="image-preview" alt="image preview"/>
                 </div>
-                <div class="form__row">
-                    <label for="bio" class="form__label">Bio:</label>
-                    <textarea id="bio" name="bio"><?php echo $user->bio; ?></textarea>
-                </div>
-                <div class="form__row">
-                    <label for="email" class="form__label">Email:</label>
-                    <input id="email" name="email" value="<?php echo $user->email; ?>" type="email" class="form__input" />
-                </div>
-                <div class="form__row">
-                    <label for="phone" class="form__label">Phone Number:</label>
-                    <input id="phone" name="phone" value="<?php echo $user->phone_number; ?>" type="tel" class="form__input" />
-                </div>
-                <div class="form__row">
-                    <label for="gender" class="form__label">Gender:</label>
-                    <select id="gender" name="gender">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="cant">Can't remember</option>
-                    </select>
-                </div>
-                <input type="submit" value="Submit">
-                <?php echo $this->session->flashdata('success'); ?>
+                <input type="submit" id="submit" name="submit" value="Submit">
             </form>
         </div>
     </main>
@@ -109,5 +97,15 @@
         </div>
     </footer>
 </body>
-
+<script>
+<script>
+function previewImage() {
+    document.getElementById("image-preview").style.display = "block";
+    var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("image-source").files[0]);
+    oFReader.onload = function(oFREvent) {
+        document.getElementById("image-preview").src = oFREvent.target.result;
+    };
+    $("#preview").text('Preview:');
+};
 </html>
