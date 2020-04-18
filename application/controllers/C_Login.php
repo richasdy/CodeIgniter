@@ -20,6 +20,8 @@ class C_Login extends CI_Controller {
 
         $check = $this->M_User->login($username, $password);
         if ($check) {
+            $id = $this->M_User->getUserID($username);
+            $this->session->set_userdata("userID", $id->idUser);
             $this->session->set_userdata("username", $username); 
             redirect('C_Feed');
         }else { 

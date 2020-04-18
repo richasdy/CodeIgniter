@@ -15,6 +15,13 @@ class C_Feed extends CI_Controller {
     
     }
 
+    public function searchCaption() { 
+        $data['photos'] = $this->M_Photos->search($this->input->get('searchkey'));
+        $this->load->view("feed", $data);
+
+
+    }
+
 
     public function upload() { 
         $config['upload_path']          = './assets/images/';
@@ -28,10 +35,10 @@ class C_Feed extends CI_Controller {
         if ($this->upload->do_upload('image')) {
 
             $data = array(
-                'username' => $this->session->userdata('username'),
-                'url' => './assets/images/'.$this->upload->data('file_name'),
+                'idUser' => $this->session->userdata('userID'),
+                'url' => base_url().'assets/images/'.$this->upload->data('file_name'),
                 'caption'  => $this->input->post('caption'),
-                'like'  => 0
+                'likes'  => 0
             );
 
             $this->M_Photos->upload($data);

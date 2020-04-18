@@ -15,13 +15,18 @@ class M_User extends CI_Model {
         }
     }
 
+    public function getUserID($username) { 
+        $query = $this->db->query("SELECT idUser FROM user where username LIKE '$username'");
+        return $query->row();
+    }
+
     public function loadProfile($username) { 
         $query = $this->db->query("SELECT * FROM profile WHERE username LIKE '$username'");
         return $query->row();
     }
 
-    public function userUploads($username) { 
-        $query = $this->db->query("SELECT * FROM photo WHERE username LIKE '$username'");
+    public function userUploads($idUser) { 
+        $query = $this->db->query("SELECT * FROM photos WHERE idUser LIKE '$idUser'");
         return $query->result();
     }
 

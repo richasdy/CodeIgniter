@@ -42,6 +42,7 @@
 						</div>
 					</div>
 					<input type="submit" class="btn btn-primary btn-block">
+					</form>
 				</div>
 
 			</div>
@@ -54,8 +55,11 @@
 			</a>
 		</div>
 		<div class="navigation__column">
+
 			<i class="fa fa-search"></i>
-			<input type="text" placeholder="Search">
+			<form name="form" action="<?= base_url("C_Feed/searchCaption")?>" method="get">
+				<input  type="text" placeholder="Search" name="searchkey">
+			</form>
 		</div>
 
 		<div class="navigation__column">
@@ -71,6 +75,8 @@
 					</a>
 				</li>
 				<li class="navigation__list-item">
+
+
 					<a href="<?= base_url("C_Navigation")?>" class="navigation__link">
 						<i class="fa fa-heart-o fa-lg"></i>
 					</a>
@@ -88,11 +94,11 @@
 
 
 	<main id="feed">
-        <?php if ($this->session->flashdata('message')):?>
+		<?php if ($this->session->flashdata('message')):?>
 		<div class="alert alert-danger m-0 " role="alert">
 			<?= $this->session->flashdata('message')?>
 		</div>
-        <?php endif?>
+		<?php endif?>
 		<?php foreach($photos as $row) :?>
 		<div class="photo">
 			<header class="photo__header">
@@ -113,7 +119,7 @@
 					</span>
 				</div>
 
-				<span class="photo__likes"><?= $row->like?> likes</span>
+				<span class="photo__likes"><?= $row->likes?> likes</span>
 				<strong style="font-weight:700"><?= $row->username?></strong>
 				<p class="mt-3 mb-3"><?= $row->caption?></p>
 				<ul class="photo__comments">

@@ -40,7 +40,7 @@ class C_EditProfile extends CI_Controller {
         $this->load->library('upload', $config);
 
         if ($this->upload->do_upload('image')) { 
-            $profpic = './assets/images/'.$this->upload->data('file_name');
+            $profpic = base_url().'/assets/images/'.$this->upload->data('file_name');
 
             $this->M_User->editProfpic($profpic, $this->session->userdata("username"));
             redirect("C_EditProfile", 'refresh');
@@ -76,7 +76,7 @@ class C_EditProfile extends CI_Controller {
         $this->M_User->updateProfile((object) $data, $this->session->userdata("username"));
 
         if ($this->session->userdata("username") != $username) {
-            $this->M_User->updateUsername($username);
+            $this->M_User->updateUsername($username, $this->session->userdata("username"));
             $this->session->set_userdata("username", $username); 
 
         }

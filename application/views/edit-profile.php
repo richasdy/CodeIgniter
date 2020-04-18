@@ -77,7 +77,7 @@
 		<div class="edit-profile__container">
 			<header class="edit-profile__header">
 				<div class="edit-profile__avatar-container">
-					<img src="<?= base_url("assets/images/avatar.jpg")?>" class="edit-profile__avatar" />
+					<img src="<?= $profile->profpic ?>" class="edit-profile__avatar" />
 				</div>
 				<h4 class="edit-profile__username" style="margin-right: 2em"><?= $profile->username?></h4>
 				<a href="" data-toggle="modal" data-target="#editprofpic">Change Profile Picture</a>
