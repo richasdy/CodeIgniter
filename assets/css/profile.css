@@ -48,15 +48,19 @@
 .profile__column .profile__title {
   margin-bottom: 30px;
 }
+.profile__column .profile__title .verified {
+  margin-right: 15px;
+}
 
 .profile__title .profile__username {
-  margin-right: 25px;
+  margin-right: 7px;
   font-size: 32px;
   font-weight: 300;
 }
 
 .profile__title a {
-  margin-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px; 
   text-decoration: none;
   color: inherit;
   font-weight: 600;
@@ -76,6 +80,7 @@
   cursor: pointer;
   transition: transform 1s ease-in;
 }
+
 
 .profile__title i:hover {
   transform: rotate(2turn);
@@ -159,3 +164,8 @@
   font-size: 130%;
   margin-right: 5px;
 }
+
+
+
+
+

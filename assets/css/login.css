@@ -17,6 +17,7 @@
 .login__column .login__box {
   background-color: white;
   border: 1px solid #e6e6e6;
+
 }
 
 .login__column .login__box--transparent {
@@ -49,6 +50,7 @@
 
 .login__column .login__logo {
   height: 50px;
+  
 }
 
 .login__form input {
