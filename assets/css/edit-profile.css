@@ -98,3 +98,23 @@
   font-size: 14px;
   padding: 7px 25px;
 }
+
+
+/*tambahan  buat di view upload-photo.php*/
+.custom-file {
+  max-width: 255px;
+}
+
+.center {
+  border: 1px solid;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 0px;
+  min-height: 0px;
+  max-width: 80%
+}
+
+.custom-file-control.selected:lang(en)::after {
+  content: "";
+}

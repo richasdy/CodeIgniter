@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+menu ul {
+    list-style-type: none;
+}
+menu li {
+    width: 8em;
+    height: 2em;
+    font-size: 25px;
+    color: #FFC312;
+    border-left: 0.08em solid;
+    position: relative;
+    margin-top: 0.8em;
+    cursor: pointer;
+    border-radius: 30px 30px;
+}
+menu li::before,
+menu li::after {
+    content: '';
+    position: absolute;
+    width: inherit;
+    border-left: 0.1em solid;
+    margin-left: -2px;
+    z-index: -1;
+}
+menu li::before {
+    height: 80%;
+    top: 10%;
+    left: -0.3em;
+    filter: brightness(0.8);
+    border-radius: 25px 25px;
+}
+menu li::after {
+    height: 60%;
+    top: 20%;
+    left: -0.57em;
+    filter: brightness(0.6);
+    border-radius: 25px 25px;
+}
+menu li a {
+    text-decoration: none;
+    height: 92%;
+    border: 0.08em solid #E91E63;
+    background-color: #fff;
+    display: flex;
+    color: #FFC312;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    text-transform: capitalize;
+    transform: translateX(-0.65em);
+    transition: 0.5s;
+    border-radius: 30px 30px;
+    font-family: 'Ubuntu', sans-serif;
+    border-bottom: 3px solid #0b63dc;
+}
+menu li:hover a {
+    transform: translateX(0.15em);
+    border-bottom: 3px solid #0b63dc;
+}
+
+.devy {
+  margin: 0 auto;
+  width:250px;
+  border:solid 2px red;
+  border-radius: 5px;
+  color: #111;
+  font: bold 15px/40px Verdana,serif;
+  text-shadow: 1px 2px 1px red;
+  text-align:center;
+  transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -webkit-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  border-bottom: 3px solid #0b63dc;}
+
+.devy:hover {
+  /*nilai perubahan*/
+  background: red;
+  color: #fff;
+  text-shadow: 1px 2px 2px #111;
+  transform:rotate(20deg);
+  -webkit-transform:rotate(20deg);
+  -moz-transform:rotate(20deg);
+  box-shadow: 2px 4px 3px 2px #222;
+  border-bottom: 3px solid #0b63dc;
+    }

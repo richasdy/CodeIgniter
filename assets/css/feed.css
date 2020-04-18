@@ -99,3 +99,30 @@
 .photo__comments .photo__comment-author {
   font-weight: 600;
 }
+
+/*tambahan*/
+
+.fa {
+  font-size: 25px;
+}
+
+.fa-heart {
+  color:red;
+}
+
+.more {
+  color:#8e8e8e;
+}
+
+.author {
+  font-weight: 600;
+}
+
+.fa-bookmark-o {
+  float: right;
+}
+
+.fa-bookmark {
+  float: right;
+}
+

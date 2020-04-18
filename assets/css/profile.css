@@ -27,17 +27,11 @@
   border-radius: 50%;
   transform-style: preserve-3d;
   transition: transform 0.5s linear;
-  animation: rotateLynn 1s linear infinite;
+  width: 150px;
+  height: 150px;
 }
 
-@keyframes rotateLynn {
-  from {
-    transform: rotateY(0turn);
-  }
-  to {
-    transform: rotateY(1turn);
-  }
-}
+
 
 .profile__column .profile__title,
 .profile__column .profile__stats {
@@ -124,6 +118,7 @@
 
 .profile__photo img {
   max-width: 100%;
+  object-fit: fill;
 }
 
 .profile__photo .profile__photo-overlay {
@@ -152,10 +147,12 @@
 }
 .profile__photo-overlay .overlay__item:last-child {
   margin-left: 10px;
-  /**/
 }
 
 .profile__photo-overlay .overlay__item i {
   font-size: 130%;
   margin-right: 5px;
 }
+
+/*tambahan*/
+
