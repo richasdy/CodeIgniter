@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// $root = "http://localhost/Codeigniter/";
+// $constant['base_url'] = $root;
+// define('')
+
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
