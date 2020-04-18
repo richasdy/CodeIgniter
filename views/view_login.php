@@ -17,10 +17,10 @@
             <div class="login__column">
                 <div class="login__box">
                     <img src="assets/images/loginLogo.png" class="login__logo" />
-                    <form action="feed.html" method="get" class="login__form">
+                    <form action="<?php echo base_url('index.php/auth/login'); ?>" method="post" class="login__form">
                         <input type="text" name="username" placeholder="Username" required />
                         <input type="password" name="password" placeholder="Password" required />
-                        <input type="submit" value="Log in" />
+                        <input type="submit" />
                     </form>
                     <span class="login__divider">or</span>
                     <a href="#" class="login__link">
@@ -39,6 +39,13 @@
                         <img src="assets/images/android.png" class="login__appstore" alt="Android appstore logo" title="Android appstore logo" />
                     </div>
                 </div>
+            </div>
+            <div style="color: red;margin-bottom: 15px">
+                <?php
+                    if($this->session->flashdata('message')){
+                        echo $this->session->flashdata('message');
+                    }
+                ?>
             </div>
         </main>
         <footer class="footer">
