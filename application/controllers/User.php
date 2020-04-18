@@ -10,6 +10,7 @@ class User extends CI_Controller {
 	}
 	public function index()
 	{
+		$data['feed'] = $this->userM->getPost();
 		$this->load->view('feed');
 	}
 	public function profile()
@@ -39,6 +40,30 @@ class User extends CI_Controller {
 	public function addPhoto()
 	{
 		$this->load->view('add-photo');
+	}
+	public function addPhotoAction()
+	{
+		
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']  = '100';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+		
+		$this->load->library('upload', $config);
+		
+		if ( ! $this->upload->do_upload('file')){
+			$error = array('error' => $this->upload->display_errors());
+			print_r($error);
+		}
+		else{
+			$data = array('upload_data' => $this->upload->data());
+			$poto['caption'] = $this->input->post('caption');
+			$poto['url'] = 'uploads/'.$data['upload_data']['file_name'];
+			$this->userM->uploadPhoto($poto);
+			$this->session->set_flashdata('success', 'upload success !');
+			redirect('user/addPhoto');
+		}
 	}
 
 }

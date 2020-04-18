@@ -16,7 +16,14 @@ class UserM extends CI_Model {
 	{
 		$this->db->where('id_profile', $id);
 		$this->db->update('profile', $data);
-
+	}
+	public function uploadPhoto($data)
+	{
+		$this->db->insert('photo', $data);
+	}
+	public function getPost()
+	{
+		return $this->db->query("SELECT * FROM `photo`")->result();
 	}
 }
 

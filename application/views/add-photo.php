@@ -55,7 +55,7 @@
                 <div class="edit-profile__avatar-container">
                     <img src="<?php echo base_url('assets/images/avatar.jpg')?>" class="edit-profile__avatar" />
                 </div>
-                <h4 class="edit-profile__username">serranoarevalo</h4>
+                <h4 class="edit-profile__username"><?php echo $this->session->userdata('username'); ?></h4>
             </header>
             <form action="<?php echo base_url('user/addPhotoAction')?>" method="post" class="edit-profile__form" enctype="multipart/form-data">
                 <input type="hidden" id="id" value="1">
@@ -72,6 +72,7 @@
                     <img id="image-preview" alt="image preview"/>
                 </div>
                 <input type="submit" id="submit" name="submit" value="Submit">
+                <?php echo $this->session->flashdata('success'); ?>
             </form>
         </div>
     </main>
