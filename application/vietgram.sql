@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2020 at 02:28 PM
+-- Generation Time: Apr 18, 2020 at 03:05 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -87,11 +87,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `name`, `website`, `bio`, `email`, `phone`, `gender`, `avatar`) VALUES
-(1, 'bellatris', 'bellatris', 'Bellatris A.', 'http://bellatris.com', 'Tambah Bio', 'bella@gmail.com', '088309098121', 'Female', 'bellatris.jpg'),
-(2, 'ridho', 'ridho', 'Ridho', 'http://ridho.com', 'Bismillah', 'ridho@mail.com', '085869317979', 'Male', 'avatar.jpg'),
+(1, 'asdqweqw', 'eqweqeq', 'qwewqewq', 'http://qwewqeq.com', 'Tambah Bio', 'qweqewe@gmail.com', '088309098121', 'Female', 'bellatris.jpg'),
+(2, 'asdaw', 'qwdasd', 'dsadww', 'http://asdasasd.com', 'Bismillah', 'asdasd@mail.com', '085869317979', 'Male', 'avatar.jpg'),
 (3, 'user', 'user', 'User', 'www.user.com', 'Ini bioku, mana biomu ?', 'user@mail.com', '088530349881', 'Male', 'IMG.9028.JPG'),
-(4, 'dummy', 'dummy', 'Dummy', 'http://dumy.com', 'Aku percobaan edit', 'dumm@mail.com', '080812310912', 'Male', 'avatar.jpg\r\n'),
-(6, 'fazainsyah', '1234', 'Fazainsyah', 'fazainsyah.com', 'haha hihi aja kali ya', 'fazainsyah@gmail.com', '0808080808080', 'Laki-Laki', 'Hello.jpg');
+(4, 'dummy', 'dummy', 'Dummy', 'http://dumy.com', 'asdasdwqdasdqwd', 'dumm@mail.com', '080812310912', 'Male', 'avatar.jpg\r\n'),
+(6, 'fazainsyah', '1234', 'Fazainsyah', 'fazainsyah.com', 'haha hihi aja kali ya', 'fazainsyah@gmail.com', '0808080808080', 'Male', 'Hello.jpg');
 
 --
 -- Indexes for dumped tables
