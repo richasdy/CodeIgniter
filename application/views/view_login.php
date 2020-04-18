@@ -17,9 +17,10 @@
             <div class="login__column">
                 <div class="login__box">
                     <img src="<?php echo base_url('assets/images/loginLogo.png'); ?>" class="login__logo" />
-                    <form action="feed.html" method="get" class="login__form">
+                    <form action="<?php echo base_url('Login/index'); ?>" method="post" class="login__form">
                         <input type="text" name="username" placeholder="Username" required />
                         <input type="password" name="password" placeholder="Password" required />
+                        <?php echo $this->session->flashdata('error'); ?>
                         <input type="submit" value="Log in" />
                     </form>
                     <span class="login__divider">or</span>
