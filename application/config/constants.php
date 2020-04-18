@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// $root = "http://localhost/Codeigniter/";
+// $constant['base_url'] = $root;
+// define('')
+
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
@@ -65,10 +69,10 @@ defined('FOPEN_READ_WRITE_CREATE_STRICT')       OR define('FOPEN_READ_WRITE_CREA
 | are as follows:
 |
 |    Standard C/C++ Library (stdlibc):
-|       https://www.gnu.org/software/libc/manual/html_node/Exit-Status.html
+|       http://www.gnu.org/software/libc/manual/html_node/Exit-Status.html
 |       (This link also contains other GNU-specific conventions)
 |    BSD sysexits.h:
-|       https://www.gsp.com/cgi-bin/man.cgi?section=3&topic=sysexits
+|       http://www.gsp.com/cgi-bin/man.cgi?section=3&topic=sysexits
 |    Bash scripting:
 |       http://tldp.org/LDP/abs/html/exitcodes.html
 |
