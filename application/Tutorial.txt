@@ -1,0 +1,292 @@
+// Melakukan config
+1. Import database vietgram
+2. Configure databasenya di config/database.php
+   hostname = 'localhost'
+   username = 'root'
+   password = ''
+   database = 'vietgram'
+3. Tambahkan autoload database dan session di config/autoload.php pada bagian $autoload['libraries']
+
+// Tambahkan data dan foto
+1. Data yang ada di database adalah data ridho, silahkan ganti datanya dengan data kamu sendiri.
+2. Untuk atribut avatar pada tabel user dan atribut pict pada tabel post diisi dengan nama foto yang ada di folder assets
+
+
+// Menghilangkan index.php
+1. Copy .htaccess sejajar dengan folder application,assets,system, dsb.
+2. Ubah 'index.php' menjadi '' pada bagian $config['index_page'] di config/config.php
+
+// Buat Model
+1. Buat file model pada folder Model dengan nama Post.php, User.php, dan Follow.php
+2. Copy code berikut ke Post.php
+<?php
+
+class Post extends CI_Model {
+
+    public function getAllPost() {
+        $this->db->join('user', 'post.id_user = user.id_user');
+        return $this->db->get('post')->result();
+    }
+    
+    public function getPost($id) {
+        $this->db->where('id_user',$id);
+        $query = $this->db->get('post');
+        return $query->num_rows();
+    }
+    
+    public function getUserPost($id) {
+        $this->db->where('id_user',$id);
+        return $this->db->get('post')->result();
+    }
+}
+
+3. Copy code berikut ke User.php 
+<?php
+
+class User extends CI_Model {
+
+    public function login($data) {
+        $this->db->where('username',$data['username']);
+        $this->db->where('password',$data['password']);
+        $query = $this->db->get('user');
+        return ($query->num_rows() > 0) ? $query->row() : false;
+    }
+
+    public function getUser($username) {
+        $this->db->where('username',$username);
+        $query = $this->db->get('user');
+        return ($query->num_rows() > 0) ? $query->row() : false;
+    }
+
+    public function editUser($id, $data) {
+        $this->db->where('id_user',$id);
+        $this->db->update('user',$data);
+    }
+
+    public function getSomeUser($id) {
+        $this->db->select('id_user_follow');
+        $this->db->where('id_user',$id);
+        $data = $this->db->get('follow')->result_array();
+
+        foreach ($data as $following) {
+            $id_user_follow[] = $following['id_user_follow'];
+        }
+
+        $this->db->where('id_user !=', $id);
+        if (!empty($id_user_follow)) {
+            $this->db->where_not_in('id_user', $id_user_follow);
+        }
+        return $this->db->get('user')->result();
+    }
+
+    public function searchUser($username, $id) {
+        $this->db->where('id_user !=', $id);
+        $this->db->like('username', $username);
+        return $this->db->get('user')->result();
+    }
+
+}
+
+
+
+4. Copy code berikut ke Follow.php
+<?php
+
+class Follow extends CI_Model {
+
+    public function checkFollowing($data) {
+        $this->db->where('id_user',$data['id_user']);
+        $this->db->where('id_user_follow',$data['id_user_follow']);
+        $query = $this->db->get('follow');
+        return ($query->num_rows() > 0) ? true : false;
+    }
+
+    public function addFollowing($data){
+        $this->db->insert('follow',$data);
+        return ($this->db->affected_rows() == 1) ? true : false;
+    }
+
+    public function getFollowing($id) {
+        $this->db->where('id_user',$id);
+        $query = $this->db->get('follow');
+        return $query->num_rows();
+    }
+
+    public function getFollowers($id) {
+        $this->db->where('id_user_follow',$id);
+        $query = $this->db->get('follow');
+        return $query->num_rows();
+    }
+}
+
+
+// Ubah Controller
+1. Ubah code yang ada pada controllers/Login.php
+<?php
+
+class Login extends CI_Controller {
+
+    function __construct(){
+        parent::__construct();
+        $this->load->model('User');
+    }
+
+    public function index() {
+        $this->load->view('view_login');
+    }
+
+    public function login(){
+        $data['username'] = $this->input->post('username');
+        $data['password'] = $this->input->post('password');
+        $result = $this->User->login($data);
+        if ($result) {
+            $this->session->set_userdata('id',$result->id_user);
+            $this->session->set_userdata('user',$data['username']);
+            redirect('/feed');
+        } else {
+            $error = array('error_message' => "Username or Password ain't correct");
+            $this->load->view('view_login', $error);
+        }
+    }
+}
+
+
+2. Ubah code yang ada pada controllers/Profile.php
+<?php
+
+class Profile extends CI_Controller {
+
+    function __construct(){
+        parent::__construct();
+        $this->load->model('User');
+        $this->load->model('Follow');
+        $this->load->model('Post');
+    }
+
+    public function index() {
+        $id = $this->session->userdata('id');
+        $username = $this->session->userdata('user');
+        if ($username) {
+            $data = array( 
+                'profile' => $this->User->getUser($username),
+                'post' => $this->Post->getPost($id),
+                'followers' => $this->Follow->getFollowers($id),
+                'following' => $this->Follow->getFollowing($id),
+                'allPost' => $this->Post->getUserPost($id)
+            );
+            $this->load->view('view_profile',$data);
+        } else {
+            redirect('/login');
+        }
+    }
+
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect('/login');
+    }
+
+}
+
+3. Ubah code yang ada pada controllers/Feed.php 
+<?php
+
+class Feed extends CI_Controller {
+
+    function __construct(){
+        parent::__construct();
+        $this->load->model('User');
+        $this->load->model('Post');
+    }
+
+    public function index() {
+        $username = $this->session->userdata('user');
+        if ($username) {
+            $data['allPost'] = $this->Post->getAllPost();
+            $this->load->view('view_feed',$data);
+        } else {
+            redirect('/login');
+        }
+    }
+}
+
+
+4. Ubah code yang ada pada controllers/Explore.php 
+<?php
+
+class Explore extends CI_Controller {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->model('Follow');
+        $this->load->model('User');
+    }
+
+    public function index() {
+        $id = $this->session->userdata('id');
+        if ($id) {
+            $data['users'] = $this->User->getSomeUser($id);
+            $this->load->view('view_explore',$data);
+        } else {
+            redirect('/login');
+        }
+    }
+
+    public function search() {
+        $id = $this->session->userdata('id');
+        $username = $this->input->get('search'); 
+        $data['users'] = $this->User->searchUser($username, $id);
+        $this->load->view('view_explore',$data);
+    }
+
+    public function add($id) {
+        $data['id_user'] = $this->session->userdata('id');
+        $data['id_user_follow'] = $id;
+        $followed = $this->Follow->checkFollowing($data); 
+        if (!$followed) {
+            $this->Follow->addFollowing($data);
+            redirect('/explore');
+        }
+        
+    }
+}
+ 
+
+
+5. Ubah code yang ada pada controllers/Edit_Profile.php 
+<?php
+
+class Edit_Profile extends CI_Controller {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->model('User');
+    }
+
+    public function index() {
+        $username = $this->session->userdata('user');
+        if ($username) {
+            $data['profile'] = $this->User->getUser($username);
+            $this->load->view('view_edit_profile',$data);
+        } else {
+            redirect('/login');
+        }
+    }
+
+    public function edit() {
+        $id = $this->session->userdata('id');
+        $data['username'] = $this->input->post('username');
+        $data['name'] = $this->input->post('name');
+        $data['website'] = $this->input->post('website');
+        $data['bio'] = $this->input->post('bio');
+        $data['email'] = $this->input->post('email');
+        $data['phone'] = $this->input->post('phonenumber');
+        $data['gender'] = $this->input->post('gender');
+        $this->User->editUser($id,$data);
+        redirect('/profile');
+    }
+}
+
+
+// Copy view
+1. Diberikan folder view, tinggal copy aja
+
