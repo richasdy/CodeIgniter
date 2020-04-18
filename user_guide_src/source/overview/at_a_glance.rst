@@ -111,4 +111,4 @@ CodeIgniter has a Friendly Community of Users
 =============================================
 
 Our growing community of users can be seen actively participating in our
-`Community Forums <https://forum.codeigniter.com/>`_.
+`Community Forums <http://forum.codeigniter.com/>`_.
