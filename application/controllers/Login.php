@@ -3,9 +3,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-	public function index()
-	{
-		$this->load->view('view_login');
-	}
+ function __construct(){
+    parent::__construct();
+    $this->load->model('userM');
+    $this->load->library('session');
+ }
 
+ public function index()
+ {
+  $this->load->view('login'); 
+ }
+
+ public function aksi_login(){
+   $data['username'] = $this->input->post('username');
+   $data['password'] = $this->input->post('password');
+  if($this->userM->login($data)) {
+   	$this->session->set_userdata('username', $this->input->post('username'));
+       redirect('/feed');
+  } else {
+   redirect('/login');
+  }
+ }
 }
+?> 
