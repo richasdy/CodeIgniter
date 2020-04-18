@@ -30,7 +30,7 @@ class model_IG extends CI_Model{
 			"website" => $this->input->post('website', true),
 			"bio" => $this->input->post('bio', true),
 			"email" => $this->input->post('email', true),
-			"nohp" => $this->input->post('nohp', true),
+			"phone"=> $this->input->post('phone',true),
 			"gender" => $this->input->post('gender', true),
 		];
 		$this->db->where('username', $username);
