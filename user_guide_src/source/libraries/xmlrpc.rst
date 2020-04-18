@@ -73,7 +73,7 @@ information:
 -  The *request* data (explained below).
 
 Here is a basic example that sends a simple Weblogs.com ping to the
-`Ping-o-Matic <https://pingomatic.com/>`_
+`Ping-o-Matic <http://pingomatic.com/>`_
 
 ::
 
