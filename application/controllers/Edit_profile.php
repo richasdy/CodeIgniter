@@ -20,7 +20,7 @@ class Edit_profile extends CI_Controller {
          "website" => $this->input->post('website', true),
          "bio" => $this->input->post('bio', true),
          "email" => $this->input->post('email', true),
-         "nohp" => $this->input->post('nohp', true),
+         "phone" => $this->input->post('phone', true),
          "gender" => $this->input->post('gender', true),
      ];
      $this->model_IG->edit_profile($_SESSION['username'], $data);
