@@ -3,7 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
-| Enable/Disable Migrations
+| Enable/Disable 
+
 |--------------------------------------------------------------------------
 |
 | Migrations are disabled by default for security reasons.
