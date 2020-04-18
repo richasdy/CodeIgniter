@@ -11,7 +11,7 @@ class User extends CI_Controller {
 	public function index()
 	{
 		$data['feed'] = $this->userM->getPost();
-		$this->load->view('feed');
+		$this->load->view('feed',$data);
 	}
 	public function profile()
 	{

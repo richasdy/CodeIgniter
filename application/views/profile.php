@@ -74,46 +74,7 @@
         </header>
         <section class="profile__photos">
             <div class="profile__photo">
-                <img src="images/feedPhoto.jpg" />
-                <div class="profile__photo-overlay">
-                    <span class="overlay__item">
-                        <i class="fa fa-heart"></i>
-                        486
-                    </span>
-                    <span class="overlay__item">
-                        <i class="fa fa-comment"></i>
-                        344
-                    </span>
-                </div>
-            </div>
-            <div class="profile__photo">
-                <img src="images/feedPhoto.jpg" />
-                <div class="profile__photo-overlay">
-                    <span class="overlay__item">
-                            <i class="fa fa-heart"></i>
-                            486
-                        </span>
-                    <span class="overlay__item">
-                            <i class="fa fa-comment"></i>
-                            344
-                        </span>
-                </div>
-            </div>
-            <div class="profile__photo">
-                <img src="images/feedPhoto.jpg" />
-                <div class="profile__photo-overlay">
-                    <span class="overlay__item">
-                                <i class="fa fa-heart"></i>
-                                486
-                            </span>
-                    <span class="overlay__item">
-                                <i class="fa fa-comment"></i>
-                                344
-                            </span>
-                </div>
-            </div>
-            <div class="profile__photo">
-                <img src="images/feedPhoto.jpg" />
+                <img src="<?php echo base_url('assets/images/feedPhoto.jpg')?>" />
                 <div class="profile__photo-overlay">
                     <span class="overlay__item">
                                     <i class="fa fa-heart"></i>
