@@ -42,8 +42,7 @@ to avoid collisions when you're running multiple applications on the same enviro
 
 ::
 
-	$this->load->driver(
-		'cache',
+	$this->load->driver('cache',
 		array('adapter' => 'apc', 'backup' => 'file', 'key_prefix' => 'my_')
 	);
 
@@ -102,7 +101,7 @@ Class Reference
 
 			$this->cache->save('cache_item_id', 'data_to_cache');
 
-		.. note:: The ``$raw`` parameter is only utilized by APC, APCu and Memcache,
+		.. note:: The ``$raw`` parameter is only utilized by APC and Memcache,
 			in order to allow usage of ``increment()`` and ``decrement()``.
 
 	.. php:method:: delete($id)
@@ -188,16 +187,6 @@ Class Reference
 		.. note:: The information returned and the structure of the data is dependent
 			on which adapter is being used.
 
-	.. php:method:: get_loaded_driver()
-
-		:returns:	Loaded driver name after initialization ('apc', 'apcu', 'dummy', 'file', 'memcached', 'redis' or 'wincache')
-		:rtype:	string
-
-		This method will return the caching driver currently used after initialization.
-		::
-
-			echo $this->cache->get_loaded_driver(); // Will return something like "file"
-
 *******
 Drivers
 *******
@@ -212,19 +201,7 @@ specific adapter to the driver loader as follows::
 	$this->cache->apc->save('foo', 'bar', 10);
 
 For more information on APC, please see
-`https://php.net/apc <https://php.net/apc>`_.
-
-APC User Cache (APCu) Caching
-=============================
-
-All of the methods listed above can be accessed without passing a
-specific adapter to the driver loader as follows::
-
-	$this->load->driver('cache');
-	$this->cache->apcu->save('foo', 'bar', 10);
-
-For more information on APCu, please see
-`https://php.net/apcu <https://php.net/apcu>`_.
+`http://php.net/apc <http://php.net/apc>`_.
 
 File-based Caching
 ==================
@@ -253,7 +230,7 @@ specific adapter to the driver loader as follows::
 	$this->cache->memcached->save('foo', 'bar', 10);
 
 For more information on Memcached, please see
-`https://php.net/memcached <https://php.net/memcached>`_.
+`http://php.net/memcached <http://php.net/memcached>`_.
 
 WinCache Caching
 ================
@@ -267,7 +244,7 @@ specific adapter to the driver loader as follows::
 	$this->cache->wincache->save('foo', 'bar', 10);
 
 For more information on WinCache, please see
-`https://php.net/wincache <https://php.net/wincache>`_.
+`http://php.net/wincache <http://php.net/wincache>`_.
 
 Redis Caching
 =============
@@ -278,6 +255,8 @@ To use it, you need `Redis server and phpredis PHP extension <https://github.com
 Config options to connect to redis server must be stored in the application/config/redis.php file.
 Available options are::
 	
+	$config['socket_type'] = 'tcp'; //`tcp` or `unix`
+	$config['socket'] = '/var/run/redis.sock'; // in case of `unix` socket type
 	$config['host'] = '127.0.0.1';
 	$config['password'] = NULL;
 	$config['port'] = 6379;
@@ -290,7 +269,7 @@ specific adapter to the driver loader as follows::
 	$this->cache->redis->save('foo', 'bar', 10);
 
 For more information on Redis, please see
-`https://redis.io <https://redis.io>`_.
+`http://redis.io <http://redis.io>`_.
 
 Dummy Cache
 ===========
