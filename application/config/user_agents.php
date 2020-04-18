@@ -87,8 +87,7 @@ $browsers = array(
 	'amaya'			=> 'Amaya',
 	'IBrowse'		=> 'IBrowse',
 	'Maxthon'		=> 'Maxthon',
-	'Ubuntu'		=> 'Ubuntu Web Browser',
-	'Vivaldi'		=> 'Vivaldi'
+	'Ubuntu'		=> 'Ubuntu Web Browser'
 );
 
 $mobiles = array(
@@ -153,11 +152,6 @@ $mobiles = array(
 	'open web'		=> 'Open Web',
 	'openweb'		=> 'OpenWeb',
 	'meizu'                 => 'Meizu',
-	'huawei'                => 'Huawei',
-	'xiaomi'                => 'Xiaomi',
-	'oppo'                  => 'Oppo',
-	'vivo'                  => 'Vivo',
-	'infinix'               => 'Infinix',
 
 	// Operating Systems
 	'android'		=> 'Android',
