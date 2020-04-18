@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2020 at 10:10 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: Apr 18, 2020 at 04:35 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `webpro_izzan_vietgram`
+-- Database: `db_ig`
 --
 
 -- --------------------------------------------------------
@@ -40,9 +40,9 @@ CREATE TABLE `photo` (
 --
 
 INSERT INTO `photo` (`username`, `url`, `caption`, `like`) VALUES
-('izzanfr', 'gambar1.jpeg', 'ngelamunin mantan', '170.890'),
-('izzanfr', 'gambar2.jpg', 'chill out baby', '560.890'),
-('izzanfr', 'gambar3.jpeg', 'good job keep it up', '2.340.980');
+('aryapratama', '1.jpg', 'SMA', '182'),
+('aryapratama', 'enigma.jpg', 'blackholeeeeeeeeeeeeeeeeeeee', '666'),
+('aryapratama', 'wolf.jpg', 'serigala', '64');
 
 -- --------------------------------------------------------
 
@@ -56,7 +56,7 @@ CREATE TABLE `profile` (
   `website` varchar(50) NOT NULL,
   `bio` varchar(5000) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `phone` varchar(12) NOT NULL,
+  `nohp` varchar(12) NOT NULL,
   `gender` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -64,9 +64,8 @@ CREATE TABLE `profile` (
 -- Dumping data for table `profile`
 --
 
-INSERT INTO `profile` (`name`, `username`, `website`, `bio`, `email`, `phone`, `gender`) VALUES
-('Izzan Faikar Ramadhy', 'izzanfr', 'izzanfr@student.telkomuniversity.com', 'seseorang penikmat musik tahun 2000 an dan pecinta action movies. Keep enjoy your life just chill out dont be sad, you can do it', 'izzanfaikar3@gmail.com', '082240164821', 'laki-laki'),
-('webpro the gans', 'webpro', 'webpro.com', 'pelajaran yang santai namun sulit', 'webprogans@gmail.com', '082240164922', 'laki-laki');
+INSERT INTO `profile` (`name`, `username`, `website`, `bio`, `email`, `nohp`, `gender`) VALUES
+('Arya Pratama Anugerah R', 'aryapratama', 'https://www.facebook.com/arya.rahmadian.3', 'semoga corona ilang ea', 'aryarahmadian@gmail.com', '089501015229', '0');
 
 -- --------------------------------------------------------
 
@@ -85,8 +84,31 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `email`) VALUES
-('izzanfr', 'izzan123', 'izzanfaikar3@gmail.com'),
-('webpro', 'webpro123', 'webpro@gmail.com');
+('1', '1', '1@gmail.com'),
+('aryapratama', '123', 'aryarahmadain@gmail.com');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `photo`
+--
+ALTER TABLE `photo`
+  ADD PRIMARY KEY (`url`);
+
+--
+-- Indexes for table `profile`
+--
+ALTER TABLE `profile`
+  ADD PRIMARY KEY (`username`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
