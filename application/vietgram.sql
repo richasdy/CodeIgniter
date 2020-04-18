@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2020 at 12:20 AM
+-- Generation Time: Apr 18, 2020 at 02:28 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -91,7 +90,8 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `name`, `website`, `bio`,
 (1, 'bellatris', 'bellatris', 'Bellatris A.', 'http://bellatris.com', 'Tambah Bio', 'bella@gmail.com', '088309098121', 'Female', 'bellatris.jpg'),
 (2, 'ridho', 'ridho', 'Ridho', 'http://ridho.com', 'Bismillah', 'ridho@mail.com', '085869317979', 'Male', 'avatar.jpg'),
 (3, 'user', 'user', 'User', 'www.user.com', 'Ini bioku, mana biomu ?', 'user@mail.com', '088530349881', 'Male', 'IMG.9028.JPG'),
-(4, 'dummy', 'dummy', 'Dummy', 'http://dumy.com', 'Aku percobaan edit', 'dumm@mail.com', '080812310912', 'Male', 'avatar.jpg\r\n');
+(4, 'dummy', 'dummy', 'Dummy', 'http://dumy.com', 'Aku percobaan edit', 'dumm@mail.com', '080812310912', 'Male', 'avatar.jpg\r\n'),
+(6, 'fazainsyah', '1234', 'Fazainsyah', 'fazainsyah.com', 'haha hihi aja kali ya', 'fazainsyah@gmail.com', '0808080808080', 'Laki-Laki', 'Hello.jpg');
 
 --
 -- Indexes for dumped tables
@@ -130,7 +130,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
