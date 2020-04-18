@@ -37,11 +37,11 @@ class C_Feed extends CI_Controller {
             $this->M_Photos->upload($data);
 
 
-            $this->session->set_flashdata('message', 'Successfully uploaded');
             redirect('C_Feed');
         }else { 
-            $error['error'] = $this->upload->display_errors();
-            $this->load->view('index', $error);
+            $error = $this->upload->display_errors();
+            $this->session->set_flashdata('message', $error);
+            redirect('C_Feed');
 
         }
     }

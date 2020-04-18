@@ -14,8 +14,8 @@
 <body>
     <nav class="navigation">
         <div class="navigation__column">
-            <a href="feed.html">
-                <img src="images/logo.png" />
+            <a href="<?= base_url("C_Feed")?>">
+                <img src="<?= base_url()?>assets/images/logo.png" />
             </a>
         </div>
         <div class="navigation__column">
@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li class="navigation__list-item">
-                    <a href="#" class="navigation__link">
+                    <a href="<?= base_url("C_Navigation")?>" class="navigation__link">
                         <i class="fa fa-heart-o fa-lg"></i>
                     </a>
                 </li>
