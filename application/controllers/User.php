@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+// Nama: Muhammad Aziz Al-assad
+// NIM: 1301180044
+// Kelas: IF-42-11
 
 class User extends CI_Controller {
 
@@ -65,24 +68,18 @@ class User extends CI_Controller {
     $this->session->set_userdata($dataProfile);
     redirect('User');
   }
-  
-  public function saveImage() {
-    $post = $this->input->post();
-    
-  }
 
-  private function _do_uploadPhoto() {
-    $config = [
-      'upload_path' => './assets/images/',
-      'allowed_types' => 'gif|jpg|png',
-      'max_size' => '1024',
-      'overwrite' => 'true',
-    ];
+  public function do_uploadPhoto() {
+    $data = [];
 
-    $this->load->library('upload', $config);
+    $upload = $this->M_User->uploadPhoto();
 
-    if ($this->upload->do_upload('image')) {
-
+    if ($upload['result'] == 'success') {
+      $this->M_User->saveIntoDatabase($upload);
+      redirect('User');
+    } else {
+      $data['message'] = $upload['error'];
+      redirect('User/load_uploadPhoto');
     }
   }
   

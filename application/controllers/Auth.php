@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+// Nama: Muhammad Aziz Al-assad
+// NIM: 1301180044
+// Kelas: IF-42-11
 
 class Auth extends CI_Controller {
 

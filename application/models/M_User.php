@@ -1,57 +1,68 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+// Nama: Muhammad Aziz Al-assad
+// NIM: 1301180044
+// Kelas: IF-42-11
 
 class M_User extends CI_Model {
 
-  function checkUser($username, $password) {
+  public function checkUser($username, $password) {
     return $this->db->get_where('user', [
       'username' => $username,
       'password' => $password
     ])->row_array();
   }
   
-  function getProfile($username) {
+  public function getProfile($username) {
     return $this->db->get_where('profile', [
       'username' => $username
     ])->row_array();
   }
 
-  function editProfile($data, $username) {
+  public function editProfile($data, $username) {
     $this->db->where('username', $username);
     $this->db->update('profile', $data);
   }
 
-  function editUser($data, $username) {
+  public function editUser($data, $username) {
     $this->db->where('username', $username);
     $this->db->update('user', $data);
   }
 
   // Upload Image -----------------------------
-  private $_id;
-  private $_url;
+  public function uploadPhoto() {
+    $config['upload_path'] = './assets/images/';
+    $config['allowed_types'] = 'jpg|png|jpeg';
+    $config['max_size'] = 2048;
+    $config['remove_spcae'] = TRUE;
 
-  public function setID($id) {
-    $this->_id = $id;
+    $this->load->library('upload', $config);
+    if ($this->upload->do_upload('image')) {
+      $result = [
+        'result' => 'success',
+        'file' => $this->upload->data(),
+        'error' => '',
+      ];
+      return $result;
+    } else {
+      $result = [
+        'result' => 'error',
+        'file' => '',
+        'error' => $this->upload->display_errors(),
+      ];
+      return $result;
+    }
   }
 
-  public function setURL($url) {
-    $this->_url = $url;
-  }
-
-  public function getPhoto() {
-    $this->db->select(array('p.id', 'p.url'));
-    $this->db->from('photo p');
-    $this->db->where('p.id', $this->_id);
-    return $this->db->get()->row_array();
+  public function saveIntoDatabase($upload) {
+    $data = [
+      'url'     => $upload['file']['file_name'],
+      'caption' => $this->input->post('caption'),
+      'like'    => 225,
+    ];
+    $this->db->insert('photo', $data);
   }
   
-  public function createPhoto() {
-    $data = array(
-      'url' => $this->_url,
-    );
-    $this->db->insert('photo', $data);
-    return $this->db->insert_id();
-  }
 }
 
 ?>

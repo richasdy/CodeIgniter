@@ -31,7 +31,7 @@ Kelas: IF-42-11 -->
         <div class="navigation__column">
             <ul class="navigations__links">
                 <li class="navigation__list-item">
-                    <a href="explore.php" class="navigation__link">
+                    <a href="<?= site_url('User/load_explore') ?>" class="navigation__link">
                         <i class="fa fa-compass fa-lg"></i>
                     </a>
                 </li>
@@ -41,7 +41,7 @@ Kelas: IF-42-11 -->
                     </a>
                 </li>
                 <li class="navigation__list-item">
-                    <a href="profile.php" class="navigation__link">
+                    <a href="<?= site_url('User') ?>" class="navigation__link">
                         <i class="fa fa-user-o fa-lg"></i>
                     </a>
                 </li>

@@ -84,7 +84,7 @@ Kelas: IF-42-11 -->
                         <span class="photo__location">Bandung</span>
                     </div>
                 </header>
-                <img src="<?= base_url('assets/').$row['url'] ?>" />
+                <img src="<?= base_url('assets/images/').$row['url'] ?>" />
                 <div class="photo__info">
                     <div class="photo__actions">
                         <span class="photo__action">

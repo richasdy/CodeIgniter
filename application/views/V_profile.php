@@ -89,7 +89,7 @@ Kelas: IF-42-11 -->
             $query_image = $this->db->get('photo')->result_array();
             foreach ($query_image as $row) { ?>
                 <div class="profile__photo">
-                    <img src="<?= base_url('assets/').$row["url"] ?>" />
+                    <img src="<?= base_url('assets/images/').$row["url"] ?>" />
                     <div class="profile__photo-overlay">
                         <span class="overlay__item">
                             <i class="fa fa-heart"></i>
