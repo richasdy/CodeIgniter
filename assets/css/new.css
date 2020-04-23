@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+body {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+}
+.boxSearch {
+    width: 100%;
+    display: block;
+    padding: 10px;
+    border: 1px solid #0988A9;
+}
+ul.listSearch {
+    padding-left: 0 !important;
+}
+.listSearch li{
+    background-color: #0988A9;
+    padding: 10px;
+    margin: 5px 0;
+    list-style: none;
+    color: #DAD9DE;
+}
+.listSearch li:hover {
+    background-color: #DAD9DE;
+    color: #0988A9;
+}
