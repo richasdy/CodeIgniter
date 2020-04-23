@@ -887,18 +887,6 @@ abstract class CI_DB_driver {
 	{
 		return $this->_trans_status;
 	}
-	
-	// --------------------------------------------------------------------
-
-	/**
-	 * Returns TRUE if a transaction is currently active
-	 *
-	 * @return	bool
-	 */
-	public function trans_active()
-	{
-		return (bool) $this->_trans_depth;
-	}
 
 	// --------------------------------------------------------------------
 
